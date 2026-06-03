@@ -20,7 +20,7 @@
             </div>
 
             <!-- Replace YOUR_FORMSPREE_ENDPOINT with your actual link -->
-            <form id="rsvp-form" action="https://formspree.io/f/xaqzyygn" method="POST" class="invite-form">
+            <form id="rsvp-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" class="invite-form">
                 
                 <label for="date-selection" style="font-weight: bold; margin-bottom: 5px;">Choose a Date:</label>
                 <select id="date-selection" name="Selected Date" required>
@@ -29,10 +29,9 @@
                     <option value="Thursday, 06/11/2026 @ 8:00 PM">Thursday, 06/11/2026 @ 8:00 PM</option>
                 </select>
 
-                <label for="email-input" style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">Your Email (for the Google Invite):</label>
-                <input type="email" id="email-input" name="Email" placeholder="Enter your email" required>
+                <!-- Removed the email input entirely for a faster RSVP! -->
 
-                <button type="submit" class="button" id="submit-btn">Lock it in 🔒</button>
+                <button type="submit" class="button" id="submit-btn" style="margin-top: 15px;">Lock it in 🔒</button>
             </form>
         </div>
 
