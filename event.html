@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>It's a Date! 🥂</title>
+    <!-- Use the exact same stylesheet to keep the cosmic glassmorphism vibe -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Extra styles specific to the Event Card */
+        .event-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 30px auto;
+            border: 2px solid #000;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.8);
+            text-align: left;
+            max-width: 400px;
+        }
+        
+        .event-card p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            border-bottom: 2px dashed rgba(0,0,0,0.1);
+            padding-bottom: 15px;
+        }
+        
+        .event-card p:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        
+        .emoji-icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>It's a Date! 🥂</h1>
+        <p class="subtitle">The RSVP is officially locked in.</p>
+
+        <div class="photo-gallery">
+            <img src="images/burger.jpeg" alt="A delicious burger">
+            <img src="images/mehruba_dinner.jpeg" alt="Mehruba at dinner">
+        </div>
+
+        <div class="event-card">
+            <p><span class="emoji-icon">👩🏽‍🤝‍👨🏻</span> <strong>Who:</strong> Momo & Zozo</p>
+            <p><span class="emoji-icon">🗓️</span> <strong>When:</strong> <span id="event-date" style="color: #d4a373; font-weight: bold;">Checking the stars...</span></p>
+            <p><span class="emoji-icon">📍</span> <strong>Where:</strong> It's a surprise 🤫</p>
+        </div>
+
+        <br>
+        <a href="index.html" class="button">Return Home 🏠</a>
+    </div>
+
+    <script>
+        // Check the URL for the '?date=' parameter we sent from the invite page
+        const urlParams = new URLSearchParams(window.location.search);
+        const chosenDate = urlParams.get('date');
+
+        // If a date was found in the URL, inject it into the HTML
+        if (chosenDate) {
+            document.getElementById('event-date').textContent = chosenDate;
+        } else {
+            document.getElementById('event-date').textContent = "TBD - Awaiting your selection!";
+        }
+    </script>
+</body>
+</html>

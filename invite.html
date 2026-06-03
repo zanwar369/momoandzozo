@@ -4,31 +4,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dinner Invite!</title>
+    <!-- Links to the Partiful-style CSS we made earlier -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>You're Invited to Dinner!</h1>
-        <p>We'd love for you to join us. Please let us know which date works best for you.</p>
+        
+        <div id="form-section">
+            <h1>You're Invited! 🎟️</h1>
+            <p class="subtitle">Please let me know which date works best for you.</p>
 
-        <!-- Replace the action URL with your Formspree endpoint -->
-        <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" class="invite-form">
-            
-            <label for="date-selection">Choose a Date:</label>
-            <select id="date-selection" name="Selected Date" required>
-                <option value="" disabled selected>Select an option...</option>
-                <option value="Thursday, 06/04/2026 @ 8:00 PM">Thursday, 06/04/2026 @ 8:00 PM</option>
-                <option value="Thursday, 06/11/2026 @ 8:00 PM">Thursday, 06/11/2026 @ 8:00 PM</option>
-            </select>
+            <div class="photo-gallery">
+                <img src="images/burger.jpeg" alt="A delicious burger">
+                <img src="images/mehruba_dinner.jpeg" alt="Mehruba at dinner">
+            </div>
 
-            <label for="email-input">Your Email (for the Google Invite):</label>
-            <input type="email" id="email-input" name="Email" placeholder="Enter your email" required>
+            <!-- Replace YOUR_FORMSPREE_ENDPOINT with your actual link -->
+            <form id="rsvp-form" action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" class="invite-form">
+                
+                <label for="date-selection" style="font-weight: bold; margin-bottom: 5px;">Choose a Date:</label>
+                <select id="date-selection" name="Selected Date" required>
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="Thursday, 06/04/2026 @ 8:00 PM">Thursday, 06/04/2026 @ 8:00 PM</option>
+                    <option value="Thursday, 06/11/2026 @ 8:00 PM">Thursday, 06/11/2026 @ 8:00 PM</option>
+                </select>
 
-            <button type="submit" class="button">RSVP</button>
-        </form>
+                <label for="email-input" style="font-weight: bold; margin-top: 10px; margin-bottom: 5px;">Your Email (for the Google Invite):</label>
+                <input type="email" id="email-input" name="Email" placeholder="Enter your email" required>
 
-        <br>
-        <a href="index.html" class="back-link">← Back to Momo & Zozo</a>
+                <button type="submit" class="button" id="submit-btn">Lock it in 🔒</button>
+            </form>
+        </div>
+
+        <br><br>
+        <a href="index.html" style="color: #333; font-weight: bold; text-decoration: none;">← Back to Momo & Zozo</a>
     </div>
+
+    <script>
+        const rsvpForm = document.getElementById("rsvp-form");
+        const dateSelection = document.getElementById("date-selection");
+        const submitBtn = document.getElementById("submit-btn");
+
+        rsvpForm.addEventListener("submit", async function(event) {
+            // Prevent standard form submission so we can control the redirect
+            event.preventDefault(); 
+            
+            // Give visual feedback that it's working
+            submitBtn.textContent = "Sending... 🚀";
+            
+            // Get the exact text of the date she chose
+            const selectedDateText = dateSelection.options[dateSelection.selectedIndex].text;
+            
+            const formData = new FormData(event.target);
+            fetch(event.target.action, {
+                method: rsvpForm.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    // Redirect to the new event page, adding the date to the URL!
+                    window.location.href = "event.html?date=" + encodeURIComponent(selectedDateText);
+                } else {
+                    alert("Oops! There was a problem sending your RSVP.");
+                    submitBtn.textContent = "Lock it in 🔒";
+                }
+            }).catch(error => {
+                alert("Oops! Check your internet connection and try again.");
+                submitBtn.textContent = "Lock it in 🔒";
+            });
+        });
+    </script>
 </body>
 </html>
