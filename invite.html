@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinner Invite!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>You're Invited to Dinner!</h1>
+        <p>We'd love for you to join us. Please let us know which date works best for you.</p>
+
+        <!-- Replace the action URL with your Formspree endpoint -->
+        <form action="https://formspree.io/f/YOUR_FORMSPREE_ENDPOINT" method="POST" class="invite-form">
+            
+            <label for="date-selection">Choose a Date:</label>
+            <select id="date-selection" name="Selected Date" required>
+                <option value="" disabled selected>Select an option...</option>
+                <option value="Thursday, 06/04/2026 @ 8:00 PM">Thursday, 06/04/2026 @ 8:00 PM</option>
+                <option value="Thursday, 06/11/2026 @ 8:00 PM">Thursday, 06/11/2026 @ 8:00 PM</option>
+            </select>
+
+            <label for="email-input">Your Email (for the Google Invite):</label>
+            <input type="email" id="email-input" name="Email" placeholder="Enter your email" required>
+
+            <button type="submit" class="button">RSVP</button>
+        </form>
+
+        <br>
+        <a href="index.html" class="back-link">← Back to Momo & Zozo</a>
+    </div>
+</body>
+</html>
